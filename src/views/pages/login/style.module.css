@@ -1,0 +1,14 @@
+.container {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.logo {
+  text-align: center;
+}
+
+.btn-login {
+  width: 10px !important;
+  background-color: #ff0000;
+}
