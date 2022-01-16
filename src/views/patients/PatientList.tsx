@@ -63,22 +63,22 @@ const PatientList = () => {
 
   React.useEffect(() => {
     api
-      .get("patients")
+      .get("/patients")
       .then((res) => {
         setLoading(true);
-        setData(res.data);
+        setData(res.data.patients);
       })
       .catch((error) => {
-        console.log("Error: ", error);
         setError(error.message);
       })
       .finally(() => {
+        console.log("HEREEEE!!!");
         setLoading(false);
       });
   }, []);
 
-  if (loading || data.length === 0) return <Spinner size="large" />;
   if (error !== null) return <Alert message={error} type="error" showIcon />; //closable
+  if (loading || data.length === 0) return <Spinner size="large" />;
 
   return (
     <>

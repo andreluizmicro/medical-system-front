@@ -2,13 +2,11 @@ import React from "react";
 import { Form, Input, Button, Checkbox, Row, Col } from "antd";
 import styles from "./style.module.css";
 import logo from "../../../assets/images/logo.png";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const navigate = useNavigate();
   const onFinish = (values: any) => {
     localStorage.setItem("token", "12345yhusad8723dsh");
-    window.location.href = "/dashboard";
+    window.location.href = "/";
   };
 
   const onFinishFailed = (errorInfo: any) => {
