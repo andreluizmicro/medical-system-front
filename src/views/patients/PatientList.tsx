@@ -1,16 +1,17 @@
 import React from "react";
-import { Table, Tag, Space, Row, Col, Button } from "antd";
+import { Table, Tag, Space, Row, Col, Button, Alert } from "antd";
 import Spinner from "../../components/spinner/Spinner";
 import { api } from "../../services/apit";
 import { useNavigate } from "react-router-dom";
 import CustomModal from "../../components/modal/CustomModal";
+import "../../repositories/patients/PatientsRepository";
 
 const columns = [
   {
     title: "Nome",
     dataIndex: "name",
     key: "name",
-    // render: (text: any) => <a href="/">{text}</a>,
+    render: (text: any) => <a href="/">{text}</a>,
   },
   {
     title: "Idade",
@@ -58,16 +59,26 @@ const PatientList = () => {
   const navigate = useNavigate();
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    api.get("patients").then((res) => {
-      setLoading(true);
-      setData(res.data);
-      setLoading(false);
-    });
+    api
+      .get("patients")
+      .then((res) => {
+        setLoading(true);
+        setData(res.data);
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   if (loading || data.length === 0) return <Spinner size="large" />;
+  if (error !== null) return <Alert message={error} type="error" showIcon />; //closable
 
   return (
     <>
