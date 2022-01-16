@@ -4,7 +4,7 @@ import { Content, Footer } from "antd/lib/layout/layout";
 import styles from "../styles/globals.module.css";
 import AppContent from "../components/AppContent";
 import AppMenu from "../components/Menu/AppMenu";
-import { Layout, Spin } from "antd";
+import { Layout } from "antd";
 
 const DefaultLayout = () => {
   return (

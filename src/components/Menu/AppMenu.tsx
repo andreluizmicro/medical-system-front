@@ -4,16 +4,12 @@ import { Menu } from "antd";
 import {
   MailOutlined,
   CalendarOutlined,
-  AppstoreOutlined,
   SettingOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
-import SubMenu from "antd/lib/menu/SubMenu";
 import { Link } from "react-router-dom";
 
 const AppMenu = () => {
-  const [mode, setMode] = React.useState("inline");
-  const [theme, setTheme] = React.useState("light");
   const { SubMenu } = Menu;
 
   return (
