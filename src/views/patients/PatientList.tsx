@@ -1,25 +1,29 @@
 import React from "react";
-import { Table, Tag, Space } from "antd";
+import { Table, Tag, Space, Row, Col, Button } from "antd";
+import Spinner from "../../components/spinner/Spinner";
+import { api } from "../../services/apit";
+import { useNavigate } from "react-router-dom";
+import CustomModal from "../../components/modal/CustomModal";
 
 const columns = [
   {
-    title: "Name",
+    title: "Nome",
     dataIndex: "name",
     key: "name",
-    render: (text: any) => <a href="/">{text}</a>,
+    // render: (text: any) => <a href="/">{text}</a>,
   },
   {
-    title: "Age",
+    title: "Idade",
     dataIndex: "age",
     key: "age",
   },
   {
-    title: "Address",
+    title: "Endereço",
     dataIndex: "address",
     key: "address",
   },
   {
-    title: "Tags",
+    title: "tag",
     key: "tags",
     dataIndex: "tags",
     render: (tags: any) => (
@@ -39,7 +43,7 @@ const columns = [
     ),
   },
   {
-    title: "Action",
+    title: "Ações",
     key: "action",
     render: (text: string, record: any) => (
       <Space size="middle">
@@ -50,109 +54,38 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "4",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "5",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "6",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "7",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "8",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "9",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "10",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "11",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "12",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "13",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-  {
-    key: "14",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
-
 const PatientList = () => {
-  return <Table columns={columns} dataSource={data} />;
+  const navigate = useNavigate();
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    api.get("patients").then((res) => {
+      setLoading(true);
+      setData(res.data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading || data.length === 0) return <Spinner size="large" />;
+
+  return (
+    <>
+      <CustomModal />
+      <Row>
+        <Col span={12}>
+          <h1>Listagem de pacientes</h1>
+        </Col>
+        <Col span={12} style={{ textAlign: "right" }}>
+          <Button type="primary" onClick={() => navigate("/patient/create")}>
+            Novo paciente
+          </Button>
+        </Col>
+      </Row>
+
+      <Table columns={columns} dataSource={data} />
+    </>
+  );
 };
 
 export default PatientList;
