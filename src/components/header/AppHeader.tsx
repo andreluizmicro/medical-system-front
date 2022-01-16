@@ -50,8 +50,14 @@ const AppHeader = () => {
       <Row className={styles.row}>
         <Col span={12}>
           <Link to="/">
-            <img src={logo} alt="logo Medical System" className={styles.logo} />
-            <span className={styles.logoName}>MedicalSystem</span>
+            <div className={styles.logoInfo}>
+              <img
+                src={logo}
+                alt="logo Medical System"
+                className={styles.logo}
+              />
+              <span className={styles.logoName}>MedicalSystem</span>
+            </div>
           </Link>
         </Col>
         <Col
@@ -91,7 +97,10 @@ const AppHeader = () => {
             okText="Sim"
             cancelText="Não"
           >
-            <Link to="/logou" className={styles.headerUserInfo}>
+            <Link
+              to="/logou"
+              className={`${styles.headerUserInfo} ${styles.headerLogout}`}
+            >
               Sair
             </Link>
           </Popconfirm>

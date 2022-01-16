@@ -12,12 +12,25 @@
 
 .logo {
   width: 70px;
+  margin-left: 5px;
+}
+
+.logoInfo {
+  width: 250px;
+}
+
+.logoInfo:hover {
+  opacity: 0.6;
 }
 
 .headerInfo {
   font-size: 1rem;
   color: #fff;
   text-align: right;
+}
+
+.headerLogout:hover {
+  opacity: 0.6;
 }
 
 .headerUserInfo {
