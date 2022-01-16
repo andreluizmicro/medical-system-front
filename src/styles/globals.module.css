@@ -2,6 +2,42 @@
   background: rgb(64 173 255) !important ;
 }
 
+.contentHeader {
+  border: 1px solid #000;
+}
+
+.row {
+  margin-left: -50px;
+}
+
+.logo {
+  width: 70px;
+}
+
+.headerInfo {
+  font-size: 1rem;
+  color: #fff;
+  text-align: right;
+}
+
+.headerUserInfo {
+  color: #fff;
+}
+
+.headerUserInfo:hover {
+  color: #fff;
+}
+
+.dropdown {
+  margin-right: 20px;
+}
+
+.logoName {
+  color: #fff;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .content {
   width: 100%;
   height: 90vh;
