@@ -28,7 +28,9 @@ const AppMenu = () => {
         Calendário de consultas
       </Menu.Item>
       <SubMenu key="sub1" icon={<UsergroupAddOutlined />} title="Pacientes">
-        <Menu.Item key="3">Marcar consulta</Menu.Item>
+        <Menu.Item key="3">
+          <Link to="/patient/list"> Lista de pacientes</Link>
+        </Menu.Item>
         <Menu.Item key="4">
           <Link to="/patient/create"> Cadastrar paciente</Link>
         </Menu.Item>

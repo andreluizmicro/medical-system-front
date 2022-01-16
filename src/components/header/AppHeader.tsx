@@ -1,26 +1,23 @@
 import React from "react";
 import { Header } from "antd/lib/layout/layout";
-import { UserOutlined } from "@ant-design/icons";
+import { LogoutOutlined } from "@ant-design/icons";
 import styles from "../../styles/globals.module.css";
 import {
   Col,
   Popconfirm,
   Row,
-  message,
   Menu,
   Dropdown,
   Avatar,
   Image,
   Tooltip,
-  Button,
 } from "antd";
 import logo from "../../assets/images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AppHeader = () => {
+  let navigate = useNavigate();
   const text = <span>Usuário: André Luiz</span>;
-
-  const buttonWidth = 70;
 
   const menu = (
     <Menu>
@@ -35,14 +32,9 @@ const AppHeader = () => {
     </Menu>
   );
 
-  function confirm(e: any) {
-    console.log(e);
-    message.success("Click on Yes");
-  }
-
-  function cancel(e: any) {
-    console.log(e);
-    message.error("Click on No");
+  function confirm() {
+    localStorage.setItem("token", "");
+    window.location.href = "/login";
   }
 
   return (
@@ -93,7 +85,6 @@ const AppHeader = () => {
           <Popconfirm
             title="Tem certeza que deseja sair?"
             onConfirm={confirm}
-            onCancel={cancel}
             okText="Sim"
             cancelText="Não"
           >
@@ -101,7 +92,7 @@ const AppHeader = () => {
               to="/logou"
               className={`${styles.headerUserInfo} ${styles.headerLogout}`}
             >
-              Sair
+              Sair <LogoutOutlined />
             </Link>
           </Popconfirm>
         </Col>

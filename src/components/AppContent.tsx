@@ -1,14 +1,12 @@
 import React from "react";
-import { Spin } from "antd";
 import { Route, Routes } from "react-router-dom";
 
 import routes from "../routes";
+import Spinner from "./spinner/Spinner";
 
 const AppContent = () => {
-  console.log(routes);
-
   return (
-    <React.Suspense fallback={<Spin size="large" />}>
+    <React.Suspense fallback={<Spinner size="large" />}>
       <Routes>
         {routes.map((route, idx) => {
           return (

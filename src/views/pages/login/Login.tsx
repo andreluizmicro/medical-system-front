@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const onFinish = (values: any) => {
-    navigate("/dashboard");
+    localStorage.setItem("token", "12345yhusad8723dsh");
+    window.location.href = "/dashboard";
   };
 
   const onFinishFailed = (errorInfo: any) => {

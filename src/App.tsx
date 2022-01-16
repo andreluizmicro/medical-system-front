@@ -2,15 +2,19 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./styles/globals.module.css";
 import DefaultLayout from "./layout/DefaultLayout";
-import { Spin } from "antd";
 import Login from "./views/pages/login/Login";
+import Spinner from "./components/spinner/Spinner";
 
 const App = () => {
-  const [isLogged, setIsLogged] = React.useState(true);
+  const isLogged = React.useState(() => {
+    const token = localStorage.getItem("token");
+    return token;
+  });
+
   return (
     <BrowserRouter>
-      <React.Suspense fallback={<Spin size="large" />}>
-        {!isLogged ? <Login /> : <DefaultLayout />}
+      <React.Suspense fallback={<Spinner size="large" />}>
+        {isLogged[0] === "" ? <Login /> : <DefaultLayout />}
       </React.Suspense>
     </BrowserRouter>
   );
