@@ -6,9 +6,10 @@ import {
   CalendarOutlined,
   AppstoreOutlined,
   SettingOutlined,
-  LinkOutlined,
+  UsergroupAddOutlined,
 } from "@ant-design/icons";
 import SubMenu from "antd/lib/menu/SubMenu";
+import { Link } from "react-router-dom";
 
 const AppMenu = () => {
   const [mode, setMode] = React.useState("inline");
@@ -26,9 +27,11 @@ const AppMenu = () => {
       <Menu.Item key="2" icon={<CalendarOutlined />}>
         Calendário de consultas
       </Menu.Item>
-      <SubMenu key="sub1" icon={<AppstoreOutlined />} title="Pacientes">
+      <SubMenu key="sub1" icon={<UsergroupAddOutlined />} title="Pacientes">
         <Menu.Item key="3">Marcar consulta</Menu.Item>
-        <Menu.Item key="4">Exames</Menu.Item>
+        <Menu.Item key="4">
+          <Link to="/patient/create"> Cadastrar paciente</Link>
+        </Menu.Item>
         <SubMenu key="sub1-2" title="Relatórios">
           <Menu.Item key="5">Constultas</Menu.Item>
           <Menu.Item key="6">Pedidos</Menu.Item>

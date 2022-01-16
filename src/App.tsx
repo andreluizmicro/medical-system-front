@@ -12,15 +12,13 @@ import AppMenu from "./components/Menu/AppMenu";
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-      </Routes>
       <AppHeader />
       <Layout>
         <Content style={{ height: "90vh", display: "flex" }}>
           <AppMenu />
           <div className={styles.content}>
             <Routes>
+              <Route path="/login" element={<Login />} />
               <Route path="/" element={<Dashboard />} />
             </Routes>
           </div>
