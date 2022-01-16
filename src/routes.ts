@@ -9,8 +9,9 @@ const PatientCreate = React.lazy(() => import('./views/patients/PatientCreate'))
 
 const routes = [
     { path: '/', element: Dashboard },
-    { path: '/patient/list', element: PatientList },
-    { path: '/patient/create', element: PatientCreate }
+    { path: '/patients', element: PatientList },
+    { path: '/patients/create', element: PatientCreate },
+    { path: '/patients/:id', element: Patient }
 ];
 
 export default routes;

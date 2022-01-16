@@ -3,7 +3,7 @@ import React from "react";
 const Patient = () => {
   return (
     <div>
-      <h1>Cadastro de Pacientes</h1>
+      <h1>Listar um paciente</h1>
       Cadastro
     </div>
   );

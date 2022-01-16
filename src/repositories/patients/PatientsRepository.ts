@@ -28,7 +28,9 @@ createServer({
                     tags: ["developer", "PHP"],
                 },
             ]
-        })
+        });
+
+        this.post('/patient', )
     }
 });
 

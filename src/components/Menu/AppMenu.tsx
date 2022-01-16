@@ -25,10 +25,10 @@ const AppMenu = () => {
       </Menu.Item>
       <SubMenu key="sub1" icon={<UsergroupAddOutlined />} title="Pacientes">
         <Menu.Item key="3">
-          <Link to="/patient/list"> Lista de pacientes</Link>
+          <Link to="/patients"> Lista de pacientes</Link>
         </Menu.Item>
         <Menu.Item key="4">
-          <Link to="/patient/create"> Cadastrar paciente</Link>
+          <Link to="/patients/create"> Cadastrar paciente</Link>
         </Menu.Item>
         <SubMenu key="sub1-2" title="Relatórios">
           <Menu.Item key="5">Constultas</Menu.Item>

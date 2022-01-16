@@ -88,7 +88,7 @@ const PatientList = () => {
           <h1>Listagem de pacientes</h1>
         </Col>
         <Col span={12} style={{ textAlign: "right" }}>
-          <Button type="primary" onClick={() => navigate("/patient/create")}>
+          <Button type="primary" onClick={() => navigate("/patients/create")}>
             Novo paciente
           </Button>
         </Col>
