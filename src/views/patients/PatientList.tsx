@@ -1,9 +1,10 @@
 import React from "react";
-import { Table, Tag, Space, Row, Col, Button, Alert } from "antd";
+import { Table, Tag, Row, Col, Button, Alert, Tooltip } from "antd";
+import styles from "../../styles/patients/patient.module.css";
 import Spinner from "../../components/spinner/Spinner";
 import { api } from "../../services/apit";
 import { useNavigate } from "react-router-dom";
-import CustomModal from "../../components/modal/CustomModal";
+import PatientInfoModal from "../../components/modals/PatientInfoModal";
 import "../../repositories/patients/PatientsRepository";
 
 const PatientList = () => {
@@ -23,7 +24,6 @@ const PatientList = () => {
       render: (text: string, record: any) => (
         <span
           onClick={() => {
-            console.log(record);
             setInfoUser(record);
             setModal(true);
           }}
@@ -67,10 +67,22 @@ const PatientList = () => {
       title: "Ações",
       key: "action",
       render: (text: string, record: any) => (
-        <Space size="middle">
-          <a href="/#">Invite {record.name}</a>
-          <a href="/#">Delete</a>
-        </Space>
+        <div className={styles.menuActions}>
+          <Tooltip placement="bottom" title="Editar paciente">
+            <Button
+              onClick={() => navigate(`/patient/${record.id}`)}
+              type="primary"
+              className={styles.actionButtons}
+            >
+              Editar
+            </Button>
+          </Tooltip>
+          <Tooltip placement="bottom" title="Excluir paciente">
+            <Button type="primary" danger>
+              Excluir
+            </Button>
+          </Tooltip>
+        </div>
       ),
     },
   ];
@@ -95,7 +107,7 @@ const PatientList = () => {
 
   return (
     <>
-      <CustomModal
+      <PatientInfoModal
         data={inforUser}
         title="Informações do usuário"
         visible={modal}

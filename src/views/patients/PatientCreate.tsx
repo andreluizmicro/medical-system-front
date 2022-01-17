@@ -11,8 +11,14 @@ const PatientCreate = () => {
     key: "2",
     name: "Marcos Paulo da Silva",
     age: 67,
+    phone: "(35) 9984587950",
+    email: "marcospaulo@gmail.com",
     address: "Rua do Carinha que mora logo ali",
-    tags: ["PHP", "Java"],
+    neighborhood: "Jarim das Colinas",
+    number: 1075,
+    city: "Maria da Fé",
+    state: "MG",
+    tags: ["Python", "React"],
   };
 
   function handleClick() {

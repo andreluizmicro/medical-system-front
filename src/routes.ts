@@ -11,7 +11,7 @@ const routes = [
     { path: '/', element: Dashboard },
     { path: '/patients', element: PatientList },
     { path: '/patients/create', element: PatientCreate },
-    { path: '/patients/:id', element: Patient }
+    { path: '/patient/:id', element: Patient }
 ];
 
 export default routes;
