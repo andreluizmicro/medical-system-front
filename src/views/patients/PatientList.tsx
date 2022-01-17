@@ -6,60 +6,74 @@ import { useNavigate } from "react-router-dom";
 import CustomModal from "../../components/modal/CustomModal";
 import "../../repositories/patients/PatientsRepository";
 
-const columns = [
-  {
-    title: "Nome",
-    dataIndex: "name",
-    key: "name",
-    render: (text: any) => <a href="/">{text}</a>,
-  },
-  {
-    title: "Idade",
-    dataIndex: "age",
-    key: "age",
-  },
-  {
-    title: "Endereço",
-    dataIndex: "address",
-    key: "address",
-  },
-  {
-    title: "tag",
-    key: "tags",
-    dataIndex: "tags",
-    render: (tags: any) => (
-      <>
-        {tags.map((tag: any) => {
-          let color = tag.length > 5 ? "geekblue" : "green";
-          if (tag === "loser") {
-            color = "volcano";
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
-    title: "Ações",
-    key: "action",
-    render: (text: string, record: any) => (
-      <Space size="middle">
-        <a href="/#">Invite {record.name}</a>
-        <a href="/#">Delete</a>
-      </Space>
-    ),
-  },
-];
-
 const PatientList = () => {
   const navigate = useNavigate();
   const [data, setData] = React.useState([]);
+  const [inforUser, setInfoUser] = React.useState({});
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+
+  const [modal, setModal] = React.useState<boolean>(false);
+
+  const columns = [
+    {
+      title: "Nome",
+      dataIndex: "name",
+      key: "name",
+      render: (text: string, record: any) => (
+        <span
+          onClick={() => {
+            console.log(record);
+            setInfoUser(record);
+            setModal(true);
+          }}
+          style={{ color: "#41a1ff", cursor: "pointer" }}
+        >
+          {text}
+        </span>
+      ),
+    },
+    {
+      title: "Idade",
+      dataIndex: "age",
+      key: "age",
+    },
+    {
+      title: "Endereço",
+      dataIndex: "address",
+      key: "address",
+    },
+    {
+      title: "tag",
+      key: "tags",
+      dataIndex: "tags",
+      render: (tags: any) => (
+        <>
+          {tags.map((tag: any) => {
+            let color = tag.length > 5 ? "geekblue" : "green";
+            if (tag === "loser") {
+              color = "volcano";
+            }
+            return (
+              <Tag color={color} key={tag}>
+                {tag.toUpperCase()}
+              </Tag>
+            );
+          })}
+        </>
+      ),
+    },
+    {
+      title: "Ações",
+      key: "action",
+      render: (text: string, record: any) => (
+        <Space size="middle">
+          <a href="/#">Invite {record.name}</a>
+          <a href="/#">Delete</a>
+        </Space>
+      ),
+    },
+  ];
 
   React.useEffect(() => {
     api
@@ -72,7 +86,6 @@ const PatientList = () => {
         setError(error.message);
       })
       .finally(() => {
-        console.log("HEREEEE!!!");
         setLoading(false);
       });
   }, []);
@@ -82,7 +95,13 @@ const PatientList = () => {
 
   return (
     <>
-      <CustomModal />
+      <CustomModal
+        data={inforUser}
+        title="Informações do usuário"
+        visible={modal}
+        onOk={() => setModal(false)}
+        onCancel={() => setModal(false)}
+      />
       <Row>
         <Col span={12}>
           <h1>Listagem de pacientes</h1>

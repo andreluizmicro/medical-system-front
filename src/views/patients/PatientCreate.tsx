@@ -7,6 +7,8 @@ const PatientCreate = () => {
   const navigate = useNavigate();
 
   const data = {
+    id: 2,
+    key: "2",
     name: "Marcos Paulo da Silva",
     age: 67,
     address: "Rua do Carinha que mora logo ali",

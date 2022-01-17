@@ -10,6 +10,7 @@ createServer({
             patients: [
                 {
                     id: 1,
+                    key: 1,
                     name: "André Luiz da Silva",
                     age: 34,
                     address: "Rua Padre petrus Dingenouts",
@@ -30,7 +31,15 @@ createServer({
             const data = JSON.parse(request.requestBody)
 
             return schema.create('patient', data);
-        })
+        });
+
+        this.get('/patient/:id', (schema, request) => {
+            const data = JSON.parse(request.requestBody)
+
+            console.log(data);
+            
+            return "teste";
+        });
     }
 });
 
